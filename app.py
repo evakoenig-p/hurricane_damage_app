@@ -20,29 +20,29 @@ def predict_image_class(image_data, model, w=128, h=128):
 
 @st.cache_resource
 def load_model():
-    model=tf.keras.models.load_model('model.keras')
+    model=tf.keras.models.load_model('Hurricane_Classifier2.keras')
     return model
 
 
 st.set_page_config(
     page_title="Hurricane Detector",
-    page_icon = ":cat:",
+#    page_icon = ":cat:",
     initial_sidebar_state = 'auto'
 )
 
 with st.sidebar:
         #st.image('image_path.png')
-        st.title("Cat Detection Model")
+        st.title("Hurricane Detector")
         st.subheader("Description of what your model is doing.")
 
 st.write("""
-         # Cat Detection Tool
+         # Hurricane Detector
          """
          )
 
 img_file = st.file_uploader("", type=["jpg", "png"])
 
-if 'model.keras' not in os.listdir():
+if 'Hurricane_Classifier2.keras' not in os.listdir():
         with st.spinner('Model is being downloaded...'):
                 gdown.download(id='1B-VSxxmTLYC7O-pMYPqby7a1MSE56dUA')
 with st.spinner('Model is being loaded...'):
