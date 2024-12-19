@@ -62,8 +62,9 @@ else:
   #################
         
   prediction= np.argmax(predictions,axis=1)
+  st.info('0: no Hurricane, 1:Hurricane')
   st.info(prediction)     
-  string = "Detected class: " + prediction
+  #string = "Detected class: " + prediction
 
   answer = {0: 'no Hurricane',1:'Hurricane'}     
 
