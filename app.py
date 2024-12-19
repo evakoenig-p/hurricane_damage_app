@@ -6,7 +6,7 @@ from PIL import Image, ImageOps
 import numpy as np
 
 
-def predict_image_class(image_data, model, w=224, h=224):
+def predict_image_class(image_data, model, w=128, h=128):
         size = (w,h)
         image = ImageOps.fit(image_data, size, Image.LANCZOS)
         img = np.asarray(image)
@@ -44,7 +44,7 @@ img_file = st.file_uploader("", type=["jpg", "png"])
 
 if 'model.keras' not in os.listdir():
         with st.spinner('Model is being downloaded...'):
-                gdown.download(id='1yCX8K64iAjpGGUGfOdxLdW77dlHpaWq4')
+                gdown.download(id='1B-VSxxmTLYC7O-pMYPqby7a1MSE56dUA')
 with st.spinner('Model is being loaded...'):
   model=load_model()
 
@@ -56,19 +56,32 @@ else:
   predictions = predict_image_class(image, model)
 
   #### FOR THIS EXAMPLE ONLY
-  top5_preds = tf.keras.applications.imagenet_utils.decode_predictions(predictions, top=5)
-  st.info(top5_preds[0])
-  top_pred = top5_preds[0][0][1]
+  #top5_preds = tf.keras.applications.imagenet_utils.decode_predictions(predictions, top=5)
+  #st.info(top5_preds[0])
+  #top_pred = top5_preds[0][0][1]
   #################
-
+        
+  prediction= np.argmax(predictions,axis=1)
+        
   string = "Detected class: " + top_pred
 
-  if 'cat' in top_pred.lower() or top_pred.lower() == 'tabby':
-    st.balloons()
-    st.sidebar.success(string)
-    st.write("""
-    # C A T""")
-  else:
-    st.sidebar.warning(string)
-    st.markdown("## Issue detected:")
-    st.info("Not a cat.")
+  answer = {0: 'no Hurricane',1:'Hurricane'}     
+
+  if prediction == 1 :        
+      st.write("""
+        # No Hurricane """)
+else:                
+      st.write("""
+        # Hurricane """)
+ #  st.sidebar.warning(string)
+ #   st.markdown("## Issue detected:")
+
+#if 'cat' in top_pred.lower() or top_pred.lower() == 'tabby':
+#    st.balloons()
+##    st.sidebar.success(answer[prediction])
+#    st.write("""
+#    # Hurricane """)
+#  else:
+#    st.sidebar.warning(string)
+#    st.markdown("## Issue detected:")
+ #   st.info("No Hurricane")
