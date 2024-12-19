@@ -70,7 +70,7 @@ else:
   if prediction == 1 :        
       st.write("""
         # No Hurricane """)
-else:                
+  else:                
       st.write("""
         # Hurricane """)
  #  st.sidebar.warning(string)
