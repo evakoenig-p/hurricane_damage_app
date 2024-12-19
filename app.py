@@ -68,7 +68,7 @@ else:
 
   answer = {0: 'no Hurricane',1:'Hurricane'}     
 
-  if prediction == 1 :        
+  if prediction[0] == 0 :        
       st.write("""
         # No Hurricane """)
   else:                
