@@ -25,7 +25,7 @@ def load_model():
 
 
 st.set_page_config(
-    page_title="Cat Detector",
+    page_title="Hurricane Detector",
     page_icon = ":cat:",
     initial_sidebar_state = 'auto'
 )
